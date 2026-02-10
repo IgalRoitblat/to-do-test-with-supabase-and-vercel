@@ -24,7 +24,7 @@ export default function AddTodo({ onAdd }: AddTodoProps) {
     if (user) {
       const { error } = await supabase
         .from('todos')
-        .insert({ title: title.trim(), user_id: user.id })
+        .insert({ title: title.trim(), user_id: user.id, status: 'todo' })
 
       if (!error) {
         setTitle('')
