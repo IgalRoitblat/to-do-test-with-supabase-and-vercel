@@ -135,9 +135,20 @@ export default function TodoList() {
           {todos.map((todo) => (
             <TodoItem key={todo.id} todo={todo} onUpdate={fetchTodos} />
           ))}
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-4 text-center">
-            {todos.filter((t) => t.completed).length} of {todos.length} completed
-          </p>
+          <div className="flex justify-center gap-6 text-sm text-gray-500 dark:text-gray-400 mt-4">
+            <span>
+              <span className="inline-block w-2 h-2 bg-gray-400 rounded-full mr-1"></span>
+              To Do: {todos.filter((t) => t.status === 'todo').length}
+            </span>
+            <span>
+              <span className="inline-block w-2 h-2 bg-blue-500 rounded-full mr-1"></span>
+              In Progress: {todos.filter((t) => t.status === 'in_progress').length}
+            </span>
+            <span>
+              <span className="inline-block w-2 h-2 bg-green-500 rounded-full mr-1"></span>
+              Completed: {todos.filter((t) => t.status === 'completed').length}
+            </span>
+          </div>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
