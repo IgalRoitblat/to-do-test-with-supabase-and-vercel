@@ -48,17 +48,6 @@ export default function TodoItem({ todo, onUpdate }: TodoItemProps) {
     }
   }
 
-  const getStatusLabel = () => {
-    switch (todo.status) {
-      case 'todo':
-        return 'To Do'
-      case 'in_progress':
-        return 'In Progress'
-      case 'completed':
-        return 'Completed'
-    }
-  }
-
   return (
     <div className="flex items-center gap-3 p-3 bg-white dark:bg-gray-800 rounded-lg shadow mb-2 group">
       <span
