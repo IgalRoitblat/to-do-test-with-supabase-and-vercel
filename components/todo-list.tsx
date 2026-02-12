@@ -83,55 +83,57 @@ export default function TodoList() {
   }
 
   return (
-    <div className={`w-full mx-auto ${viewMode === 'kanban' ? 'max-w-7xl' : 'max-w-2xl'}`}>
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">My To-Do List</h1>
-          {userEmail && (
-            <p className="text-sm text-gray-500 dark:text-gray-400">{userEmail}</p>
-          )}
-        </div>
-        <div className="flex gap-4 items-center">
-          <div className="flex gap-2 bg-gray-200 dark:bg-gray-700 rounded-lg p-1">
+    <div className="w-full mx-auto">
+      <div className="max-w-2xl mx-auto mb-6">
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">My To-Do List</h1>
+            {userEmail && (
+              <p className="text-sm text-gray-500 dark:text-gray-400">{userEmail}</p>
+            )}
+          </div>
+          <div className="flex gap-4 items-center">
+            <div className="flex gap-2 bg-gray-200 dark:bg-gray-700 rounded-lg p-1">
+              <button
+                onClick={() => setViewMode('list')}
+                className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+                  viewMode === 'list'
+                    ? 'bg-white dark:bg-gray-800 text-gray-800 dark:text-white shadow'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white'
+                }`}
+              >
+                List
+              </button>
+              <button
+                onClick={() => setViewMode('kanban')}
+                className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+                  viewMode === 'kanban'
+                    ? 'bg-white dark:bg-gray-800 text-gray-800 dark:text-white shadow'
+                    : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white'
+                }`}
+              >
+                Kanban
+              </button>
+            </div>
             <button
-              onClick={() => setViewMode('list')}
-              className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-                viewMode === 'list'
-                  ? 'bg-white dark:bg-gray-800 text-gray-800 dark:text-white shadow'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white'
-              }`}
+              onClick={handleSignOut}
+              className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-sm font-medium"
             >
-              List
-            </button>
-            <button
-              onClick={() => setViewMode('kanban')}
-              className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
-                viewMode === 'kanban'
-                  ? 'bg-white dark:bg-gray-800 text-gray-800 dark:text-white shadow'
-                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-white'
-              }`}
-            >
-              Kanban
+              Sign Out
             </button>
           </div>
-          <button
-            onClick={handleSignOut}
-            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 text-sm font-medium"
-          >
-            Sign Out
-          </button>
         </div>
+
+        <AddTodo onAdd={fetchTodos} />
       </div>
 
-      <AddTodo onAdd={fetchTodos} />
-
       {todos.length === 0 ? (
-        <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+        <div className="max-w-2xl mx-auto text-center py-12 text-gray-500 dark:text-gray-400">
           <p className="text-lg">No todos yet!</p>
           <p className="text-sm">Add one above to get started.</p>
         </div>
       ) : viewMode === 'list' ? (
-        <div>
+        <div className="max-w-2xl mx-auto">
           {todos.map((todo) => (
             <TodoItem key={todo.id} todo={todo} onUpdate={fetchTodos} />
           ))}
@@ -151,7 +153,7 @@ export default function TodoList() {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* To Do Column */}
           <div
             className="bg-white dark:bg-gray-800 rounded-lg p-4 min-h-[400px]"

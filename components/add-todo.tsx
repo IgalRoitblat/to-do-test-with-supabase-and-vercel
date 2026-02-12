@@ -36,7 +36,7 @@ export default function AddTodo({ onAdd }: AddTodoProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 mb-6">
+    <form onSubmit={handleSubmit} className="flex gap-2 mb-6 max-w-2xl mx-auto">
       <input
         type="text"
         value={title}
